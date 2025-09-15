@@ -10,6 +10,7 @@ class Product(models.Model):
         ('ball', 'Ball'),
         ('accessories', 'Accessories'),
         ('equipment', 'Equipment'),
+        ('goalkeeper', 'Goalkeeper'), 
         ('other', 'Other'),
     ]
     
