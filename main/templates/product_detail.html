@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ product.name }}</title>
+</head>
+<body>
+    <h1>{{ product.name }}</h1>
+
+    {% if product.thumbnail %}
+        <img src="{{ product.thumbnail }}" alt="{{ product.name }}" style="max-width:200px; height:auto;">
+    {% endif %}
+
+    <p><strong>Category:</strong> {{ product.get_category_display }}</p>
+    <p><strong>Price:</strong> Rp {{ product.price }}</p>
+    <p><strong>Description:</strong> {{ product.description }}</p>
+    <p><strong>Stock:</strong> {{ product.stock }}</p>
+    <p><strong>Rating:</strong> {{ product.rating }}</p>
+
+    <p>
+        <strong>Created At:</strong> {{ product.created_at|date:"d M Y, H:i" }}
+    </p>
+
+    <p>
+        <strong>Featured:</strong> 
+        {% if product.is_featured %} Yes {% else %} No {% endif %}
+    </p>
+</body>
+</html>
