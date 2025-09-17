@@ -37,3 +37,4 @@ class Product(models.Model):
             self.save()
             return True
         return False
+    
