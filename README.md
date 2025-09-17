@@ -61,3 +61,35 @@
 - XML by ID Endpoint: ![XML by ID Screenshot](xml-id.png)  
 
 
+-----------------------------
+
+# Tugas 4
+
+## Implementasi Checklist
+
+1. Menambahkan django.contrib.auth dan django.contrib.sessions di INSTALLED_APPS.
+2. Mengatur LOGIN_URL, LOGIN_REDIRECT_URL, dan LOGOUT_REDIRECT_URL di settings.py.
+3. Menambahkan accounts/ routing dengan django.contrib.auth.urls.
+4. Membuat template login dengan {% csrf_token %} menggunakan AuthenticationForm atau custom form.
+5. Menggunakan @login_required atau LoginRequiredMixin untuk proteksi halaman tertentu.
+6. Menguji login dan logout, lalu mengecek cookies dan session di browser.
+7. Menambahkan jawaban pertanyaan di README dan melakukan add-commit-push ke GitHub.
+
+## Jawaban Pertanyaan
+
+1. **Django AuthenticationForm** 
+AuthenticationForm adalah form bawaan Django untuk login dengan username dan password.
+Kelebihan: aman, mudah digunakan, langsung terintegrasi dengan sistem auth Django.
+Kekurangan: hanya mendukung username-password, tampilan default sederhana, perlu kustomisasi jika butuh fitur lanjutan.
+
+2. **Autentikasi vs Otorisasi**
+Autentikasi: proses memverifikasi identitas pengguna (misalnya login).
+Otorisasi: proses menentukan hak akses atau izin yang dimiliki pengguna.
+Di Django: autentikasi menggunakan User, session, dan authenticate(). Otorisasi menggunakan permissions, groups, dan decorator @login_required.
+
+3. **Perbedaan Session dan Cookies**
+Session: data disimpan di server, lebih aman, bisa menyimpan banyak data, tapi membutuhkan storage server.
+Cookies: data disimpan di browser, simpel dan ringan, tetapi kapasitas terbatas dan lebih rentan dicuri.
+
+4. **Apakah cookies aman?**
+Cookies tidak sepenuhnya aman. Risiko seperti XSS, CSRF, atau cookie theft bisa terjadi. Django mengurangi risiko dengan CSRF middleware, session server-side, enkripsi/tanda tangan cookie, serta opsi HttpOnly, Secure, dan SameSite.
