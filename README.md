@@ -3,7 +3,7 @@
 ## Identitas
 - **Nama**: Muhammad Azzam Fathurrahman  
 - **NPM**: 2406412152  
-- **Kelas**: C  
+- **Kelas**: B
 - **Link PWS**: [muhammad-azzam42-thecorner.pbp.cs.ui.ac.id](https://muhammad-azzam42-thecorner.pbp.cs.ui.ac.id/)
 
 -----------------------------
