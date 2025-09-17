@@ -6,9 +6,9 @@
 - **Kelas**: C  
 - **Link PWS**: [muhammad-azzam42-thecorner.pbp.cs.ui.ac.id](https://muhammad-azzam42-thecorner.pbp.cs.ui.ac.id/)
 
----
+-----------------------------
 
-# Tugas 2 - Pengenalan Django
+# Tugas 2 
 
 ## Implementasi Checklist
 1. Membuat proyek Django baru dengan `django-admin startproject`.
@@ -19,12 +19,10 @@
 6. Membuat routing di `main/urls.py` untuk fungsi tersebut.
 7. Deploy ke PWS sehingga aplikasi bisa diakses melalui link.
 
----
 
 ## Bagan Request–Response
 ![Bagan Request Response](bagan.png)
 
----
 
 ## Jawaban Pertanyaan
 1. **Peran settings.py**: pusat konfigurasi proyek (database, apps, middleware, dll).  
@@ -32,9 +30,9 @@
 3. **Kenapa Django dipilih**: mudah dipahami (pakai Python), konsep MVT jelas, fitur bawaan lengkap, dokumentasi bagus.  
 4. **Feedback asisten**: sudah baik.  
 
----
+-----------------------------
 
-# Tugas 3 - Data Delivery & Form
+# Tugas 3 
 
 ## Implementasi Checklist
 1. Menambahkan **empat fungsi views**: XML, JSON, XML by ID, JSON by ID.  
@@ -46,12 +44,6 @@
 7. Mengakses endpoint dengan Postman dan menambahkan screenshot.  
 8. Melakukan add-commit-push ke GitHub.  
 
----
-
-## Bagan Request–Response
-![Bagan Request Response](bagan.png)
-
----
 
 ## Jawaban Pertanyaan
 1. **Data delivery**: agar data dari server bisa dikirim ke client dengan format standar.  
@@ -61,17 +53,11 @@
 5. **Step by step**: buat views → routing → halaman index + tombol → form → detail → test di Postman → push ke GitHub.  
 6. **Feedback**: sudah baik, penjelasan jelas.  
 
----
 
 ## Screenshot Postman
-> (Tambahkan screenshot hasil uji endpoint JSON, XML, JSON by ID, XML by ID di sini)  
-
 - JSON Endpoint: ![JSON Screenshot](json.png)  
 - XML Endpoint: ![XML Screenshot](xml.png)  
 - JSON by ID Endpoint: ![JSON by ID Screenshot](json-id.png)  
 - XML by ID Endpoint: ![XML by ID Screenshot](xml-id.png)  
 
----
 
-## Link Repository
-[GitHub Repository Tugas](https://github.com/username/nama-repo)
