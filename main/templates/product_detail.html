@@ -1,29 +1,101 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ product.name }}</title>
-</head>
-<body>
-    <h1>{{ product.name }}</h1>
+{% extends 'base.html' %}
+{% load static %}
 
-    {% if product.thumbnail %}
-        <img src="{{ product.thumbnail }}" alt="{{ product.name }}" style="max-width:200px; height:auto;">
-    {% endif %}
+{% block meta %}
+<title>{{ product.name }} - Football Products</title>
+{% endblock meta %}
 
-    <p><strong>Category:</strong> {{ product.get_category_display }}</p>
-    <p><strong>Price:</strong> Rp {{ product.price }}</p>
-    <p><strong>Description:</strong> {{ product.description }}</p>
-    <p><strong>Stock:</strong> {{ product.stock }}</p>
-    <p><strong>Rating:</strong> {{ product.rating }}</p>
+{% block content %}
+<div class="bg-background w-full min-h-screen">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-    <p>
-        <strong>Created At:</strong> {{ product.created_at|date:"d M Y, H:i" }}
-    </p>
+        <!-- Back Navigation -->
+        <div class="mb-6">
+            <a href="{% url 'main:show_main' %}" class="text-gray-600 hover:text-gray-900 font-medium transition-colors">
+                ← Back to Home
+            </a>
+        </div>
 
-    <p>
-        <strong>Featured:</strong> 
-        {% if product.is_featured %} Yes {% else %} No {% endif %}
-    </p>
-</body>
-</html>
+        <!-- Product Detail Card -->
+        <article class="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 p-6 sm:p-8">
+                
+                <!-- Product Image -->
+                {% if product.thumbnail %}
+                <div class="w-full flex justify-center items-center overflow-hidden rounded-lg">
+                    <img src="{{ product.thumbnail }}" 
+                        alt="{{ product.name }}" 
+                        class="w-full h-58 sm:h-72 lg:h-96 object-cover transition-transform duration-300 ease-out transform hover:scale-125">
+                </div>
+                {% endif %}
+
+                <!-- Product Info -->
+                <div class="space-y-2 flex flex-col justify-center">
+                    <!-- Categories / Featured -->
+                    <div class="flex flex-wrap items-center gap-2 mb-6">
+                        {% if product.is_featured %}
+                        <span class="inline-flex items-center px-5 py-1 rounded-r-2xl text-md font-medium bg-tertiary text-white">
+                            Featured
+                        </span>
+                        {% endif %}
+                    </div>
+
+                    <!-- Brand -->
+                    <h1 class="text-xl sm:text-3xl font-bold text-gray-700 leading-tight mb-1">
+                        {{ product.get_brand_display | title }}
+                    </h1>
+
+                    <!-- Name -->
+                    <h1 class="text-3xl sm:text-4xl font-bold text-primary leading-tight">
+                        {{ product.name }}
+                    </h1>
+
+                    <!-- Price -->
+                    <p class="text-4xl font-extrabold text-primary my-2">
+                    {% load humanize %}
+                    Rp{{ product.price|intcomma:"." }}
+                    </p>
+
+                    <!-- Stock / Rating -->
+                    <div class="flex flex-wrap items-center text-sm text-secondary gap-8 border-t border-b border-gray-200 py-2">
+                        <span>★ Rating: {{ product.rating }}</span>
+                        <span>Stock: {{ product.stock }}</span>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="text-gray-700 leading-relaxed  text-base sm:text-lg">
+                        {{ product.description }}
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="bg-primary text-white w-full py-3 rounded-md font-medium hover:bg-hover transition-colors text-center">
+                            Add to Cart
+                        </button>
+                        <button class="bg-tertiary text-white w-full py-3 rounded-md font-medium  transition-colors text-center">
+                            Shop Now
+                        </button>
+                    </div>
+
+
+                    <!-- Seller Info -->
+                    <div class=" pt-4 mt-4">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="font-medium text-gray-900">
+                                    {% if product.user %}
+                                    Seller: {{ product.user.username }}
+                                    {% else %}
+                                    Seller: Anonymous
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> <!-- End Product Info -->
+
+            </div> <!-- End Grid -->
+        </article>
+    </div>
+</div>
+{% endblock content %}

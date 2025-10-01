@@ -51,7 +51,7 @@
 3. **is_valid()**: memeriksa validasi form sebelum data disimpan.  
 4. **csrf_token**: melindungi dari serangan CSRF, tanpa ini form bisa dimanfaatkan penyerang.  
 5. **Step by step**: buat views → routing → halaman index + tombol → form → detail → test di Postman → push ke GitHub.  
-6. **Feedback**: sudah baik, penjelasan jelas.  
+6. **Feedback**: sudah baik.  
 
 
 ## Screenshot Postman
@@ -93,3 +93,34 @@ Cookies: data disimpan di browser, simpel dan ringan, tetapi kapasitas terbatas 
 
 4. **Apakah cookies aman?**
 Cookies tidak sepenuhnya aman. Risiko seperti XSS, CSRF, atau cookie theft bisa terjadi. Django mengurangi risiko dengan CSRF middleware, session server-side, enkripsi/tanda tangan cookie, serta opsi HttpOnly, Secure, dan SameSite.
+
+-----------------------------
+
+# Tugas 5
+
+## Implementasi Checklist
+1. Menambahkan fungsi edit dan delete product pada aplikasi.
+2. Membuat halaman form edit yang otomatis terisi dengan data product lama, sehingga lebih mudah diubah.
+3. Menambahkan tombol delete pada setiap card product dengan konfirmasi sebelum produk benar-benar dihapus.
+4. Mendesain ulang halaman login, register, tambah product, edit product, dan detail product dengan CSS framework agar tampil lebih menarik.
+5. Mendesain ulang halaman daftar product: jika kosong maka menampilkan gambar + pesan, jika ada produk maka ditampilkan dengan card layout.
+6. Membuat navbar responsive: pada desktop menampilkan menu penuh, sedangkan pada mobile menggunakan tombol hamburger.
+
+## Jawaban Pertanyaan
+1. **Prioritas CSS selector**
+Urutan prioritas dalam CSS dimulai dari inline style (langsung ditulis di elemen HTML), lalu ID selector (#id), kemudian class, pseudo-class, dan attribute selector (.class, :hover, [type="text"]), dan terakhir element selector (div, h1). Jika ada konflik dengan selector yang sama, maka aturan CSS yang ditulis paling akhir akan dipakai.
+
+2. **Responsive design**
+Responsive design penting agar tampilan web bisa menyesuaikan berbagai ukuran layar, mulai dari desktop, tablet, hingga smartphone. Dengan responsive design, pengguna akan merasa lebih nyaman dan pengalaman menggunakan aplikasi jadi lebih baik.
+Contoh aplikasi sudah responsive: Instagram web, yang menyesuaikan layout feed dan navbar saat dibuka di mobile.
+Contoh aplikasi belum responsive: beberapa website instansi pemerintahan lama, yang tampilan menumpuk atau rusak jika dibuka di perangkat mobile.
+
+3. **Margin, border, dan padding**
+Margin adalah jarak luar elemen, yaitu ruang antar elemen yang berdekatan.
+Border adalah garis pembatas yang membungkus elemen.
+Padding adalah jarak dalam, yaitu ruang antara isi elemen (content) dengan bordernya.
+Ketiganya biasanya digunakan bersama untuk mengatur tata letak dan memberi ruang pada elemen agar tampilan lebih rapi.
+
+4. **Flexbox & Grid**
+Flexbox digunakan untuk mengatur layout 1 dimensi, baik baris maupun kolom. Flexbox berguna ketika kita ingin menyusun elemen agar sejajar, rata tengah, atau memberi jarak otomatis antar elemen.
+Grid digunakan untuk mengatur layout 2 dimensi (baris dan kolom sekaligus). Grid sangat berguna untuk menampilkan data dalam bentuk card, galeri, atau dashboard karena strukturnya lebih fleksibel.

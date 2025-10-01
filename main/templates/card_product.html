@@ -1,0 +1,65 @@
+{% load static %}
+
+<article class="bg-white rounded-lg cursor-pointer"   data-url="{% url 'main:show_product' product.id %}"
+  onclick="window.location = this.dataset.url">
+  <!-- Thumbnail -->
+  <div class="aspect-[4/3] relative overflow-hidden ">
+    {% if product.thumbnail %}
+      <img src="{{ product.thumbnail }}" alt="{{ product.name }}" class="w-full h-full object-cover transition-transform duration-300 ease-out transform hover:scale-110">
+    {% else %}
+      <div class="w-full h-full bg-gray-200"></div>
+    {% endif %}
+
+
+    <!-- Status Badges -->
+    <div class="absolute top-3 right-0 flex space-x-2">
+      {% if product.is_featured %}
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-l-3xl text-sm font-medium bg-tertiary text-white">
+          Featured
+        </span>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="p-5">
+
+    <h3 class="text-lg font-semibold text-primary mb-3 line-clamp-2 leading-tight">
+      <a href="{% url 'main:show_product' product.id %}" class="hover:text-hover transition-colors">
+        {{ product.name }}
+      </a>
+    </h3>
+
+    <p class="text-gray-600 text-xl font-semibold mb-2">
+    {% load humanize %}
+    Rp{{ product.price|intcomma:"." }}
+    </p>
+
+    <div class="flex items-center justify-between">
+      <p class="text-gray-600 text-sm font-semibold ">
+        {{ product.rating }} ★
+      </p>
+      <p class="text-gray-600 font-light text-sm mb-2">
+        Sold {{ product.sold }} 
+      </p>
+    </div>
+
+
+    <!-- Action Buttons -->
+    <!-- Action / Seller Info -->
+    <div class="flex justify-between items-center mt-4 border-t border-gray-100 pt-2">
+      {% if user.is_authenticated and product.user == user %}
+          <a href="{% url 'main:edit_product' product.id %}" class="text-gray-600 hover:text-gray-700 text-sm transition-colors">
+            Edit
+          </a>
+          <a href="{% url 'main:delete_product' product.id %}" class="text-red-600 hover:text-red-700 text-sm transition-colors">
+            Delete
+          </a>
+
+      {% else %}
+        <span class="text-gray-600 text-sm">Seller: {{ product.user.username }}</span>
+      {% endif %}
+    </div>
+  </div>
+
+</article>
