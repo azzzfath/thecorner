@@ -1,5 +1,15 @@
 import datetime
+import requests
 
+from django.contrib.auth import logout as auth_logout
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.html import strip_tags
+import json
+
+from django.http import JsonResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
@@ -130,3 +140,69 @@ def show_json_by_id(request, product_id):
        return HttpResponse(json_data, content_type="application/json")
    except Product.DoesNotExist:
        return HttpResponse(status=404)
+   
+
+def proxy_image(request):
+    image_url = request.GET.get('url')
+    if not image_url:
+        return HttpResponse('No URL provided', status=400)
+    
+    try:
+        # Fetch image from external source
+        response = requests.get(image_url, timeout=10)
+        response.raise_for_status()
+        
+        # Return the image with proper content type
+        return HttpResponse(
+            response.content,
+            content_type=response.headers.get('Content-Type', 'image/jpeg')
+        )
+    except requests.RequestException as e:
+        return HttpResponse(f'Error fetching image: {str(e)}', status=500)
+    
+
+@csrf_exempt
+def create_product_flutter(request):
+    if request.method == 'POST':
+        try:
+
+            data = json.loads(request.body)
+
+
+            if isinstance(data, list):
+                data = data[0]
+
+            name = strip_tags(data.get("name", ""))
+            price = int(data.get("price", 0))
+            description = strip_tags(data.get("description", ""))
+            brand = strip_tags(data.get("brand", ""))
+            category = strip_tags(data.get("category", ""))
+            thumbnail = data.get("thumbnail", "") # URL gambar biasanya tidak perlu strip_tags
+            stock = int(data.get("stock", 0))
+
+            is_featured = data.get("is_featured", False)
+            if isinstance(is_featured, str):
+                is_featured = is_featured.lower() == 'true'
+
+            user = request.user 
+
+            new_product = Product(
+                name=name,
+                price=price,
+                description=description,
+                brand=brand,
+                category=category,
+                thumbnail=thumbnail,
+                stock=stock,
+                is_featured=is_featured,
+                user=user
+            )
+            new_product.save()
+
+            return JsonResponse({"status": "success"}, status=200)
+
+        except Exception as e:
+
+            return JsonResponse({"status": "error", "message": str(e)}, status=500)
+
+    return JsonResponse({"status": "error"}, status=401)
